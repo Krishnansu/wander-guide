@@ -31,7 +31,7 @@ export const getPlacesData = async (type,sw, ne) => {
 //         lon: lng
 //       },
 //       headers: {
-//         'X-RapidAPI-Key': 'e151793696msh524b9e50a2912c1p19bba6jsn30e6e10bafe4',
+//         'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
 //         'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
 //       }
 //     }
