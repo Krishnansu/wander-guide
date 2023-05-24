@@ -5,10 +5,9 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
 import useStyles from './styles'
 
-const List=({ places , childClicked, isLoading}) => {
+const List=({ places , childClicked, isLoading, type, setType, rating, setRating}) => {
     const classes = useStyles();
-    const [type,setType] = useState('restaurants');
-    const [rating,setRating] = useState('');
+
 
     console.log({childClicked});
 
@@ -36,7 +35,7 @@ const List=({ places , childClicked, isLoading}) => {
                 <Select value={type} onChange={(e)=> setType(e.target.value)}>
                     <MenuItem value="restaurants">Restaurants</MenuItem>
                     <MenuItem value="hotels">Hotels</MenuItem>
-                    <MenuItem value="attractons">Attractions</MenuItem>
+                    <MenuItem value="attractions">Attractions</MenuItem>
 
                 </Select>
             </FormControl>
@@ -53,6 +52,7 @@ const List=({ places , childClicked, isLoading}) => {
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
                 {places?.map((place,i) => (
+                    
                     <Grid ref={elRefs[i]} item key={i} xs={12}>
                         <PlaceDetails 
                         place={place} 
@@ -60,6 +60,7 @@ const List=({ places , childClicked, isLoading}) => {
                         refProp={elRefs[i]}
                         />
                     </Grid>
+                    
                 ))}
             </Grid>
             </>

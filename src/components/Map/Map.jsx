@@ -6,19 +6,19 @@ import Rating from '@mui/lab/Rating';
 
 import useStyles from './styles';
 
-const Map=( { setCoordinates, setBounds, coordinates,places, setChildClicked}) => {
+const Map=( { setCoordinates, setBounds, coordinates,places, setChildClicked, weatherData}) => {
     const classes= useStyles();
     const isDesktop=useMediaQuery('(min-width:600px)');
     
     
     return (
         <div className={classes.mapContainer}>
-            <GoogleMapReact bootstrapURLKeys={{key: 'AIzaSyCG2YHIuPJYMOJzS6wSw5eZ0dTYXnhZFLs'}}
+            <GoogleMapReact bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
                 defaultCenter={coordinates}
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50,50,50,50]}  /* top right down left */
-                options={''}
+                options={''}  /* to change map style . Not added that functionality yet*/
                 onChange={(e) => {
                     console.log("e-> ",e);
                     setCoordinates({ lat: e.center.lat, lng: e.center.lng});
@@ -56,6 +56,13 @@ const Map=( { setCoordinates, setBounds, coordinates,places, setChildClicked}) =
 
                     </div>
                 ))}
+
+                {/* {weatherData?.list?.map((data,i) => (
+                    
+                    <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
+                        <img height={100} src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} alt={data.weather[0]}/>
+                    </div>
+                ))} */}
                 
             </GoogleMapReact>
         </div>
